@@ -13,22 +13,37 @@ function tocaSom(idElementoAudio) {
   
     document.querySelector(idElementoAudio).play();
 }
-    const listaDeTeclas = document.querySelectorAll('.tecla');
-    let contador = 0;
+const listaDeTeclas = document.querySelectorAll('.tecla');
     
-    while (contador < listaDeTeclas.length) {
-        const tecla = listaDeTeclas[contador];
+    
+    for(let i =0;i < listaDeTeclas.length;i++) {
+        const tecla = listaDeTeclas[i];
         const instrumento = tecla.classList[1];
-        
+         
         const idAudio = `#som_${instrumento}`;
         
         tecla.onclick = function(){
-            tocaSom(idAudio)
+            tocaSom(idAudio);
+
+           
         }
+        tecla.onkeydown = function(evento){
+
+            //console.log(evento.code)
+           if(evento.code  === 'Space' || evento.code === 'Enter') {
+            tecla.classList.add('ativa')
+           }
+
+          
 
 
-        contador = contador +1;
+
+        }
+        tecla.onkeyup = function(){
+            tecla.classList.remove('ativa')
+        }
         
-    }
+}
 
-  //for(let i; let = 0; i < 9; i++)
+
+
